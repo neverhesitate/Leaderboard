@@ -1,0 +1,15 @@
+server:
+  port: 8088
+  contextPath: /Leaderboard
+  
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/leaderboard?serverTimezone=UTC
+    username: root
+    password: '*neverFU-1016*'
