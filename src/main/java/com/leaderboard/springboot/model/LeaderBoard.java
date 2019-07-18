@@ -48,7 +48,7 @@ public class LeaderBoard implements Serializable{
 	@Column(name="UPDATED_DATE")
 	private Date updatedDate;
 	
-	@Column(name="IS_DELETED")
+	@Column(name="DELETED")
 	private int isDeleted;
 
 	public long getId() {
