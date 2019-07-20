@@ -91,6 +91,9 @@ public class RestApiController {
 			return new ResponseEntity(new CustomErrorType("Unable to create. A User with name " + 
 			player.getUserName()+ " already exist."),HttpStatus.CONFLICT);
 		}
+		player.setCreatedDate(new Date());
+		player.setUpdatedDate(new Date());
+		player.setIsDeleted(0);
 		leaderBoardService.saveLeaderBoard(player);
 
 		HttpHeaders headers = new HttpHeaders();
