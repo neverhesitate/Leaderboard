@@ -13,6 +13,8 @@ public interface LeaderBoardService {
 
 	LeaderBoard findByUserName(String userName);
 	
+	LeaderBoard findById(long id);
+	
 	void saveLeaderBoard(LeaderBoard player);
 	
 	void updateLeaderBoard(LeaderBoard player);

@@ -64,12 +64,12 @@ public class LeaderBoardServiceImpl implements LeaderBoardService{
 	
 	@Override
 	public void updateLeaderBoard(LeaderBoard player) {
-		
+		leaderBoardRepository.save(player);		
 	}
 	
 	@Override
 	public void deleteLeaderBoardById(long id) {
-		
+		leaderBoardRepository.delete(id);
 	}
 
 	public boolean isUserExist(LeaderBoard player) {
@@ -78,13 +78,17 @@ public class LeaderBoardServiceImpl implements LeaderBoardService{
 
 	@Override
 	public void deleteAllPlayers() {
-		
+		leaderBoardRepository.deleteAll();
 	}
 
 	@Override
-	public boolean isPlayerExist(LeaderBoard user) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isPlayerExist(LeaderBoard player) {
+		return leaderBoardRepository.exists(player.getId());
+	}
+
+	@Override
+	public LeaderBoard findById(long id) {
+		return leaderBoardRepository.findOne(id);
 	}
 
 }

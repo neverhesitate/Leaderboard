@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +30,7 @@ public class RestApiController {
 	
 
 	// -------------------Create Dummy User---------------------------------------------
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	/*@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ResponseEntity<List<LeaderBoard>> createDummyPlayers() {
 		List<LeaderBoard> players = leaderBoardService.populateDummyPlayers();
@@ -38,11 +39,11 @@ public class RestApiController {
 			// You many decide to return HttpStatus.NOT_FOUND
 		}
 		return new ResponseEntity<List<LeaderBoard>>(players, HttpStatus.OK);
-	}
+	}*/
 	
 	// -------------------Retrieve All Users---------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@RequestMapping(value = "/player/", method = RequestMethod.GET)
+	@RequestMapping(value = "/player/list", method = RequestMethod.GET)
 	public ResponseEntity<List<LeaderBoard>> listAllUsers() {
 		List<LeaderBoard> players = leaderBoardService.findAllPlayers();
 		if (players.isEmpty()) {
@@ -54,7 +55,7 @@ public class RestApiController {
 	}
 
 	// -------------------Retrieve Single User ById------------------------------------------
-	/*@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getUserById(@PathVariable("id") long id) {
 		logger.info("Fetching User with id {}", id);
@@ -65,7 +66,8 @@ public class RestApiController {
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<LeaderBoard>(player, HttpStatus.OK);
-	}*/
+	}
+	
 	// -------------------Retrieve Single User ByName------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player", method = RequestMethod.GET)
@@ -103,27 +105,25 @@ public class RestApiController {
 	
 
 	// ------------------- Update a User ------------------------------------------------
-    /*
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody User user) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping(value = "/player/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody LeaderBoard player) {
 		logger.info("Updating User with id {}", id);
-
-		User currentUser = userService.findById(id);
-
-		if (currentUser == null) {
+		
+		LeaderBoard currentPlayer = leaderBoardService.findById(id);
+		if (currentPlayer == null) {
 			logger.error("Unable to update. User with id {} not found.", id);
 			return new ResponseEntity(new CustomErrorType("Unable to upate. User with id " + id + " not found."),
 					HttpStatus.NOT_FOUND);
 		}
 
-		currentUser.setName(user.getName());
-		currentUser.setAge(user.getAge());
-		currentUser.setSalary(user.getSalary());
-
-		userService.updateUser(currentUser);
-		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+		currentPlayer.setImageUrl(player.getImageUrl());
+		currentPlayer.setTotalScore(player.getTotalScore());
+		currentPlayer.setUserName(player.getUserName());
+		currentPlayer.setUpdatedDate(new Date());
+		leaderBoardService.updateLeaderBoard(currentPlayer);
+		return new ResponseEntity<LeaderBoard>(currentPlayer, HttpStatus.OK);
 	}
-	*/
 
 	// ------------------- Delete a User-----------------------------------------
     /*
