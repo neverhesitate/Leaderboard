@@ -124,7 +124,7 @@ public class RestApiController {
 		leaderBoardService.updateLeaderBoard(currentPlayer);
 		return new ResponseEntity<LeaderBoard>(currentPlayer, HttpStatus.OK);
 	}
-
+    //Methods will never be used 
 	// ------------------- Delete a Player-----------------------------------------
     /*
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
