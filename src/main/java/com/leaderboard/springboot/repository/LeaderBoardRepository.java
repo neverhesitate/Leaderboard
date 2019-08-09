@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.leaderboard.springboot.model.LeaderBoard;
 
 /**
- * MobileRepository
+ * LeaderBoardRepository
  * @author funlu
  *
  */

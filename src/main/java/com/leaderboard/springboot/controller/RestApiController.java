@@ -44,7 +44,7 @@ public class RestApiController {
 	// -------------------Retrieve All Players---------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player/list", method = RequestMethod.GET)
-	public ResponseEntity<List<LeaderBoard>> listAllUsers() {
+	public ResponseEntity<List<LeaderBoard>> listAllPlayers() {
 		List<LeaderBoard> players = leaderBoardService.findAllPlayers();
 		if (players.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -57,11 +57,11 @@ public class RestApiController {
 	// -------------------Retrieve Single Player ById------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getUserById(@PathVariable("id") long id) {
-		logger.info("Fetching User with id {}", id);
+	public ResponseEntity<?> getPlayerById(@PathVariable("id") long id) {
+		logger.info("Fetching Player with id {}", id);
 		LeaderBoard player = leaderBoardService.findById(id);
 		if (player == null) {
-			logger.error("User with id {} not found.", id);
+			logger.error("Player with id {} not found.", id);
 			return new ResponseEntity(new CustomErrorType("User with id " + id 
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
@@ -75,7 +75,7 @@ public class RestApiController {
 		logger.info("Fetching Player with user name {}", userName);
 		LeaderBoard player = leaderBoardService.findByUserName(userName);
 		if (player == null) {
-			logger.error("User with name {} not found.", userName);
+			logger.error("Player with name {} not found.", userName);
 			return new ResponseEntity(new CustomErrorType("Player with user name " + userName 
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
@@ -107,7 +107,7 @@ public class RestApiController {
 	// ------------------- Update a Player ------------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody LeaderBoard player) {
+	public ResponseEntity<?> updatePlayer(@PathVariable("id") long id, @RequestBody LeaderBoard player) {
 		logger.info("Updating User with id {}", id);
 		
 		LeaderBoard currentPlayer = leaderBoardService.findById(id);
