@@ -41,7 +41,7 @@ public class RestApiController {
 		return new ResponseEntity<List<LeaderBoard>>(players, HttpStatus.OK);
 	}*/
 	
-	// -------------------Retrieve All Users---------------------------------------------
+	// -------------------Retrieve All Players---------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player/list", method = RequestMethod.GET)
 	public ResponseEntity<List<LeaderBoard>> listAllUsers() {
@@ -54,7 +54,7 @@ public class RestApiController {
 
 	}
 
-	// -------------------Retrieve Single User ById------------------------------------------
+	// -------------------Retrieve Single Player ById------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getUserById(@PathVariable("id") long id) {
@@ -68,7 +68,7 @@ public class RestApiController {
 		return new ResponseEntity<LeaderBoard>(player, HttpStatus.OK);
 	}
 	
-	// -------------------Retrieve Single User ByName------------------------------------------
+	// -------------------Retrieve Single Player ByName------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player", method = RequestMethod.GET)
 	public ResponseEntity<?> getPlayerByUserName(@RequestParam(value="userName") String userName) {
@@ -82,7 +82,7 @@ public class RestApiController {
 		return new ResponseEntity<LeaderBoard>(player, HttpStatus.OK);
 	}
 
-	// -------------------Create a User-------------------------------------------
+	// -------------------Create a Player-------------------------------------------
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/player/", method = RequestMethod.POST)
 	public ResponseEntity<?> createPlayer(@RequestBody LeaderBoard player, UriComponentsBuilder ucBuilder) {
@@ -104,7 +104,7 @@ public class RestApiController {
 	}
 	
 
-	// ------------------- Update a User ------------------------------------------------
+	// ------------------- Update a Player ------------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/player/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody LeaderBoard player) {
@@ -125,7 +125,7 @@ public class RestApiController {
 		return new ResponseEntity<LeaderBoard>(currentPlayer, HttpStatus.OK);
 	}
 
-	// ------------------- Delete a User-----------------------------------------
+	// ------------------- Delete a Player-----------------------------------------
     /*
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
@@ -141,7 +141,7 @@ public class RestApiController {
 		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 	}
     */
-	// ------------------- Delete All Users-----------------------------
+	// ------------------- Delete All Players-----------------------------
     /*
 	@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteAllUsers() {
